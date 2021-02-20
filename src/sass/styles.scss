@@ -53,6 +53,8 @@ body {
 	margin-top: 10px;
 	display: flex;
 	list-style: none;
+	flex-wrap: wrap;
+    justify-content: center;
 
     &__link {
         display: block;
@@ -90,12 +92,14 @@ body {
         font-weight: bold;
         text-transform: uppercase;
         margin-top: 15px;
+		text-align: center;
     }
 
     &__tagline {
         margin-top: 5px;
         font-size: 16px;
         opacity: .9;
+		text-align: center;
     }
 }
 
