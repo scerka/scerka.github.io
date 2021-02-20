@@ -23,6 +23,7 @@ jobs:
                 npm i
                 gulp build
                 cp CNAME dist/CNAME
+                cp robots.txt dist/robots.txt
             - name: Deploy
               uses: s0/git-publish-subdir-action@master
               env:
