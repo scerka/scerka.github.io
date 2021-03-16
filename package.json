@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "scerka.com",
   "version": "1.0.0",
   "description": "build tool for website",
@@ -10,7 +11,8 @@
     "html": "gulp html",
     "css": "gulp css",
     "javascript": "gulp javascript",
-    "image": "gulp image"
+    "image": "gulp image",
+	"editorconfig": "editorconfig-checker"
   },
   "type": "module",
   "repository": {
@@ -41,7 +43,8 @@
     "gulp-sass": "^4.1.0",
     "gulp-strip-comments": "^2.5.2",
     "gulp-uglify-es": "^2.0.0",
-    "gulp-webp": "^4.0.1"
+    "gulp-webp": "^4.0.1",
+	"editorconfig-checker": "^3.3.0"
   },
   "browserslist": [
     "last 2 version",

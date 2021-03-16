@@ -1,4 +1,4 @@
-name: Build onepage application
+name: Build
 
 on:
     push:
