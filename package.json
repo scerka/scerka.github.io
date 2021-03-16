@@ -12,7 +12,7 @@
     "css": "gulp css",
     "javascript": "gulp javascript",
     "image": "gulp image",
-	"editorconfig": "editorconfig-checker"
+    "editorconfig": "editorconfig-checker"
   },
   "type": "module",
   "repository": {
@@ -44,7 +44,7 @@
     "gulp-strip-comments": "^2.5.2",
     "gulp-uglify-es": "^2.0.0",
     "gulp-webp": "^4.0.1",
-    "editorconfig-checker": "^3.3.0"
+    "editorconfig-checker": "^4.0.0"
   },
   "browserslist": [
     "last 2 version",

@@ -14,24 +14,24 @@ import clean from 'gulp-clean';
 sass.compiler = sassCompiler;
 
 const path = {
-	src : {
-		html: './src/*.html',
-		sass: './src/sass/*.scss',
-		js: './src/js/*.js',
-		img: './src/img/*.*',
-		fonts: './src/fonts/*.*'
-	},
-	dist:  {
-		html: './dist',
-		css: './dist/css',
-		js: './dist/js',
-		img: './dist/img',
-		fonts: './dist/fonts'
-	}
+    src : {
+        html: './src/*.html',
+        sass: './src/sass/*.scss',
+        js: './src/js/*.js',
+        img: './src/img/*.*',
+        fonts: './src/fonts/*.*'
+    },
+    dist:  {
+        html: './dist',
+        css: './dist/css',
+        js: './dist/js',
+        img: './dist/img',
+        fonts: './dist/fonts'
+    }
 };
 
 export const html = () => {
-	return gulp.src(path.src.html)
+    return gulp.src(path.src.html)
         .pipe(htmlmin({
             removeComments: true,
             collapseWhitespace: true,
@@ -40,71 +40,71 @@ export const html = () => {
 };
 
 export const css = () => {
-	return gulp.src(path.src.sass)
+    return gulp.src(path.src.sass)
         .pipe(sass({
-			outputStyle: 'compressed'
-		}).on('error', sass.logError))
-		.pipe(cleanCSS({
-			level: {
-				1: {
-					specialComments: 0
-				}
-			}
-		}))
-		.pipe(autoprefixer({
-			cascade: false
-		}))
-		.pipe(concat('styles.css'))
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(cleanCSS({
+            level: {
+                1: {
+                    specialComments: 0
+                }
+            }
+        }))
+        .pipe(autoprefixer({
+            cascade: false
+        }))
+        .pipe(concat('styles.css'))
         .pipe(gulp.dest(path.dist.css));
 };
 
 export const javascript = () => {
-	return gulp.src(path.src.js)
-		.pipe(strip())
-		.pipe(uglify.default())
-		.pipe(concat('libs.js'))
+    return gulp.src(path.src.js)
+        .pipe(strip())
+        .pipe(uglify.default())
+        .pipe(concat('libs.js'))
         .pipe(gulp.dest(path.dist.js))
 };
 
 export const avatarToWebp = (done) => {
-	gulp.src('./src/img/avatar.jpg')
+    gulp.src('./src/img/avatar.jpg')
         .pipe(webp())
         .pipe(gulp.dest('./dist/img'))
-		done();
+        done();
 };
 
 export const image = () => (
     gulp.src(path.src.img)
         .pipe(imagemin([
-			imagemin.mozjpeg({
-				quality: 75,
-				progressive: true
-			})
-		]))
+            imagemin.mozjpeg({
+                quality: 75,
+                progressive: true
+            })
+        ]))
         .pipe(gulp.dest(path.dist.img))
 );
 
 export const delFolder = () => {
-	return gulp.src('./dist', { read: false, allowEmpty: true })
+    return gulp.src('./dist', { read: false, allowEmpty: true })
         .pipe(clean());
 };
 
 export const copy = (done) => {
-	gulp.src(path.src.fonts)
-		.pipe(gulp.dest(path.dist.fonts))
-		done();
+    gulp.src(path.src.fonts)
+        .pipe(gulp.dest(path.dist.fonts))
+        done();
 };
 
 export const watch = () => {
-	gulp.watch(path.src.sass, gulp.series(css));
-	gulp.watch(path.src.js, gulp.series(javascript));
-	gulp.watch(path.src.html, gulp.series(html));
-	gulp.watch(path.src.img, gulp.series(image));
+    gulp.watch(path.src.sass, gulp.series(css));
+    gulp.watch(path.src.js, gulp.series(javascript));
+    gulp.watch(path.src.html, gulp.series(html));
+    gulp.watch(path.src.img, gulp.series(image));
 };
 
 export const build = gulp.series(
-	delFolder,
-	gulp.parallel(html, css, javascript, image, avatarToWebp, copy)
+    delFolder,
+    gulp.parallel(html, css, javascript, image, avatarToWebp, copy)
 );
 
 export default build;
